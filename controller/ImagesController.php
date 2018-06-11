@@ -1,11 +1,18 @@
 <?php 
 
+function generateRandomString($length = 10) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+
+
 class ImagesController{
 	function index(){
 		if($this->is_image($_FILES["file"]) ){
 			$content = file_get_contents( $_FILES["file"]['tmp_name']);
 			$remotepath =  'images/'.date('Y/m/d/');
-			$remotefile = $remotepath.$_FILES["file"]['name'];
+			$filename = $_FILES['file']['name'];
+			$ext = pathinfo($filename, PATHINFO_EXTENSION);
+			$remotefile = $remotepath.generateRandomString(6).".".$ext;
 			$result = onedrive::upload(config('onedrive_root').$remotefile, $content);
 			
 			if($result){
