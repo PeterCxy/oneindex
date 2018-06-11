@@ -12,11 +12,11 @@
 	</div>
 	<div class="mdui-textfield">
 	  <label class="mdui-textfield-label">HTML 引用地址</label>
-	  <input class="mdui-textfield-input" type="text" value="<img src='<?php e($url);?>' />"/>
+	  <input class="mdui-textfield-input" type="text" value="<img src='<?php e($url);?>?o' />"/>
 	</div>
         <div class="mdui-textfield">
 	  <label class="mdui-textfield-label">Markdown 引用地址</label>
-	  <input class="mdui-textfield-input" type="text" value="![](<?php e($url);?>)"/>
+	  <input class="mdui-textfield-input" type="text" value="![](<?php e($url);?>?o)"/>
 	</div>
         <br>
 </div>
