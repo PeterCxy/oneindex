@@ -83,6 +83,9 @@ class IndexController{
 	
 	//文件夹
 	function dir(){
+		if (strpos($this->url_path, "/images") === 0) {
+			return header('Location: '."/images/");
+		}
 		$root = get_absolute_path(dirname($_SERVER['SCRIPT_NAME'])).config('root_path');
 		$navs = $this->navs();
 
