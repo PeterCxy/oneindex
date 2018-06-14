@@ -20,8 +20,12 @@ class ImagesController{
 				unlink($cachefile);
 				$root = get_absolute_path(dirname($_SERVER['SCRIPT_NAME'])).config('root_path');
 				$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-				$url = $http_type.$_SERVER['HTTP_HOST'].$root.$remotefile.((config('root_path') == '?')?'&s':'?s');
-				view::direct($url);
+				$url = $http_type.$_SERVER['HTTP_HOST'].$root.$remotefile;
+				if (!is_null($_GET['noredir'])) {
+					return 'url: '.$url."\n";
+				} else {
+					view::direct($url.((config('root_path') == '?')?'&s':'?s'));
+				}
 			}
 		}
 		return view::load('images/index');
